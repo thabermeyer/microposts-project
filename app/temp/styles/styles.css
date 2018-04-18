@@ -1,0 +1,75 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit; }
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 62.5%; }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  position: relative; }
+
+.header-1 {
+  font-size: 4.5rem;
+  font-weight: 300; }
+
+.header-3 {
+  font-size: 2.5rem;
+  font-weight: 300; }
+
+.navbar__container {
+  width: 100vw;
+  background-color: #3498db;
+  padding: 3rem;
+  margin-bottom: 3rem; }
+
+.navbar__link:link, .navbar__link:visited {
+  font-size: 2.5rem;
+  color: #fff;
+  text-decoration: none; }
+
+.postbox {
+  margin: auto;
+  color: #7f8c8d; }
+  .postbox__container {
+    max-width: 120rem;
+    margin: 4rem auto;
+    border: solid #7f8c8d 0.1rem;
+    padding: 3rem; }
+  .postbox__form {
+    margin: 2rem auto; }
+  .postbox__form-group {
+    width: 100%;
+    padding: 1.3rem;
+    margin-bottom: 2rem;
+    font-family: inherit;
+    font-size: 1.4rem;
+    color: inherit;
+    display: block; }
+    .postbox__form-group:focus {
+      outline: none; }
+  .postbox__btn {
+    width: 100%;
+    background-color: #3498db;
+    font-family: inherit;
+    font-size: 2rem;
+    color: #fff;
+    padding: 1.5rem;
+    border: none; }
+
+.footer {
+  width: 100vw;
+  background-color: #ecf0f1;
+  font-size: 2rem;
+  padding: 3rem;
+  text-align: center;
+  position: fixed;
+  bottom: 0; }

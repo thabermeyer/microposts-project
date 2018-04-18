@@ -1,0 +1,57 @@
+.postbox {
+
+    margin: auto;
+    color: $color-gray;
+
+    &__container {
+
+        max-width: 120rem;
+        margin: 4rem auto;
+        border: solid $color-gray .1rem;
+        padding: 3rem;
+
+    }
+
+    &__form {
+
+        margin: 2rem auto;
+        
+    }
+
+    &__form-group {
+
+        width: 100%;
+        padding: 1.3rem;
+        margin-bottom: 2rem;
+        font-family: inherit;
+        font-size: 1.4rem;
+        color: inherit;
+        display: block;
+
+        &:focus {
+
+            outline: none;
+
+        }
+
+    }
+
+    &__btn {
+
+        width: 100%;
+        background-color: $color-primary;
+        font-family: inherit;
+        font-size: 2rem;
+        color: #fff;
+        padding: 1.5rem;
+        border: none;
+
+    }
+
+    &__form-end {
+
+
+
+    }
+
+}
