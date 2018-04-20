@@ -2415,12 +2415,19 @@ body {
       outline: none; }
   .postbox__btn {
     width: 100%;
-    background-color: #3498db;
     font-family: inherit;
     font-size: 2rem;
     color: #fff;
     padding: 1.5rem;
     border: none; }
+    .postbox__btn--primary {
+      background-color: #3498db; }
+    .postbox__btn--edit {
+      background-color: #FF8800; }
+    .postbox__btn--cancel {
+      background-color: #eeeeee;
+      color: #000;
+      margin-top: 2rem; }
 
 .footer {
   width: 100vw;
@@ -2428,3 +2435,13 @@ body {
   font-size: 2rem;
   padding: 3rem;
   text-align: center; }
+
+.alert {
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 400;
+  padding: 1.5rem 3rem;
+  margin-bottom: 2rem;
+  background-color: #c8e6c9;
+  color: #007E33;
+  border: solid #f1f8e9 .2rem; }

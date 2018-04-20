@@ -72,12 +72,31 @@
     &__btn {
 
         width: 100%;
-        background-color: $color-primary;
         font-family: inherit;
         font-size: 2rem;
         color: #fff;
         padding: 1.5rem;
         border: none;
+
+        &--primary {
+
+            background-color: $color-primary;
+
+        }
+
+        &--edit {
+
+            background-color: #FF8800;
+
+        }
+
+        &--cancel {
+
+            background-color: #eeeeee;
+            color: #000;
+            margin-top: 2rem;
+
+        }
 
     }
 

@@ -9037,7 +9037,22 @@ var _HTTP = __webpack_require__(329);
 var _UI = __webpack_require__(330);
 
 // Get posts on DOM load
+
 document.addEventListener('DOMContentLoaded', getPosts);
+
+// Listen for add post
+
+document.querySelector('.postbox__btn').addEventListener('click', submitPost);
+
+// Listen for delete
+
+// document.querySelector('#posts').addEventListener('click', deletePost);
+
+// Listen for edit state
+
+document.querySelector('#posts').addEventListener('click', enableEdit);
+
+// Get Posts
 
 function getPosts() {
 
@@ -9046,6 +9061,53 @@ function getPosts() {
     }).catch(function (err) {
         return console.log(err);
     });
+}
+
+// Submit Post
+
+function submitPost() {
+
+    var title = document.querySelector('#title').value;
+    var body = document.querySelector('#body').value;
+
+    var data = {
+
+        title: title,
+        body: body
+
+        // Create Post
+
+    };_HTTP.http.post('http://localhost:3000/posts', data).then(function (data) {
+        _UI.ui.showAlert('Post added', 'alert');
+        _UI.ui.clearFields();
+        getPosts();
+    }).catch(function (err) {
+        return console.log(err);
+    });
+}
+
+// Enable Edit State
+
+function enableEdit(e) {
+
+    if (e.target.parentElement.classList.contains('edit')) {
+
+        var id = e.target.parentElement.dataset.id;
+        var title = e.target.parentElement.previousElementSibling.previousElementSibling.textContent;
+        var body = e.target.parentElement.previousElementSibling.textContent;
+
+        var data = {
+
+            id: id,
+            title: title,
+            body: body
+
+            // Fill form with current post
+
+        };_UI.ui.fillForm(data);
+    }
+
+    e.preventDefault();
 }
 
 /***/ }),
@@ -9263,7 +9325,7 @@ var http = exports.http = new EasyHTTP();
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+        value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -9271,33 +9333,133 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var UI = function () {
-    function UI() {
-        _classCallCheck(this, UI);
+        function UI() {
+                _classCallCheck(this, UI);
 
-        this.post = document.querySelector('#posts');
-        this.titleInput = document.querySelector('#title');
-        this.bodyInput = document.querySelector('#body');
-        this.idInput = document.querySelector('#id');
-        this.postSubmit = document.querySelector('.post-submit');
-        this.forState = 'add';
-    }
-
-    _createClass(UI, [{
-        key: 'showPosts',
-        value: function showPosts(posts) {
-
-            var output = '';
-
-            posts.forEach(function (post) {
-
-                output += '\n            \n                <div class="postbox__post">\n                \n                    <div class="postbox__post-content">\n                    \n                        <h4 class="header-4">' + post.title + '</h4>\n                        <p class="paragraph">' + post.body + '</p>\n\n                        <a href="#" class="postbox__link edit" data-id="' + post.id + '"><i class="fa fa-pencil"></i></a>\n                        \n                        <a href="#" class="postbox__link delete" data-id="' + post.id + '"><i class="fa fa-remove"></i></a>\n\n                    </div>\n                \n                </div>\n\n            ';
-            });
-
-            this.post.innerHTML = output;
+                this.post = document.querySelector('#posts');
+                this.titleInput = document.querySelector('#title');
+                this.bodyInput = document.querySelector('#body');
+                this.idInput = document.querySelector('#id');
+                this.postSubmit = document.querySelector('.postbox__btn');
+                this.forState = 'add';
         }
-    }]);
 
-    return UI;
+        _createClass(UI, [{
+                key: 'showPosts',
+                value: function showPosts(posts) {
+
+                        var output = '';
+
+                        posts.forEach(function (post) {
+
+                                output += '\n            \n                <div class="postbox__post">\n                \n                    <div class="postbox__post-content">\n                    \n                        <h4 class="header-4">' + post.title + '</h4>\n                        <p class="paragraph">' + post.body + '</p>\n\n                        <a href="#" class="postbox__link edit" data-id="' + post.id + '"><i class="fa fa-pencil"></i></a>\n\n                        <a href="#" class="postbox__link delete" data-id="' + post.id + '"><i class="fa fa-remove"></i></a>\n\n                    </div>\n                \n                </div>\n\n            ';
+                        });
+
+                        this.post.innerHTML = output;
+                }
+        }, {
+                key: 'showAlert',
+                value: function showAlert(message, className) {
+                        var _this = this;
+
+                        this.clearAlert();
+
+                        // Create div
+
+                        var div = document.createElement('div');
+
+                        // Add classes
+
+                        div.className = className;
+
+                        // Add text
+
+                        div.appendChild(document.createTextNode(message));
+
+                        // Get parent
+
+                        var container = document.querySelector('.postbox__container');
+
+                        // Get posts
+
+                        var posts = document.querySelector('#posts');
+
+                        // Insert alert div
+
+                        container.insertBefore(div, posts);
+
+                        // Timeout
+
+                        setTimeout(function () {
+
+                                _this.clearAlert();
+                        }, 3000);
+                }
+        }, {
+                key: 'clearAlert',
+                value: function clearAlert() {
+
+                        var currentAlert = document.querySelector('.alert');
+
+                        if (currentAlert) {
+
+                                currentAlert.remove();
+                        }
+                }
+        }, {
+                key: 'clearFields',
+                value: function clearFields() {
+
+                        this.titleInput.value = '';
+                        this.bodyInput.value = '';
+                }
+
+                // Fill form to edit
+
+        }, {
+                key: 'fillForm',
+                value: function fillForm(data) {
+
+                        this.titleInput.value = data.title;
+                        this.bodyInput.value = data.body;
+                        this.idInput.value = data.id;
+
+                        this.changeFormState('edit');
+                }
+
+                // Change the form state
+
+        }, {
+                key: 'changeFormState',
+                value: function changeFormState(type) {
+
+                        if (type === 'edit') {
+
+                                this.postSubmit.textContent = 'Update Post';
+                                this.postSubmit.className = 'postbox__btn postbox__btn--edit';
+
+                                // Create cancel button
+
+                                var button = document.createElement('button');
+                                button.className = 'postbox__btn postbox__btn--cancel';
+                                button.appendChild(document.createTextNode('Cancel Edit'));
+
+                                // Get parent
+
+                                var cardForm = document.querySelector('.postbox__form');
+
+                                // Get element to insert before
+
+                                var formEnd = document.querySelector('.postbox__form-end');
+
+                                // Insert cancel button
+
+                                cardForm.insertBefore(button, formEnd);
+                        } else {}
+                }
+        }]);
+
+        return UI;
 }();
 
 var ui = exports.ui = new UI();
