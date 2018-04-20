@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "webpack-dev-server --output-public-path=/build/"
+    "start": "webpack-dev-server --output-public-path=/build/",
+    "json:server": "json-server --watch app/assets/api/db.json"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -27,5 +28,9 @@
     "node-sass": "^4.8.3",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
+  },
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "json-server": "^0.12.1"
   }
 }

@@ -12,6 +12,39 @@
 
     }
 
+    &__post {
+
+        border: solid $color-gray .1rem;
+        padding: 3rem;
+
+        &:not(:last-child) {
+
+            margin-bottom: 2rem;
+
+        }
+
+    }
+
+    &__post-content {
+
+
+
+    }
+
+    &__link {
+
+        font-size: 2rem;
+        color: $color-primary;
+
+        &:last-child {
+
+            margin-left: 2rem;
+            color: red;
+
+        }
+
+    }
+
     &__form {
 
         margin: 2rem auto;
