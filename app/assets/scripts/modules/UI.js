@@ -111,6 +111,14 @@ class UI {
 
     }
 
+    // Clear ID hidden value
+
+    clearIdInput() {
+
+        this.idInput.value = '';
+
+    }
+
     // Change the form state
 
     changeFormState(type) {
@@ -140,7 +148,24 @@ class UI {
 
         } else {
 
+            this.postSubmit.textContent = 'Post It';
+            this.postSubmit.className = 'postbox__btn postbox__btn--primary';
 
+            // Remove cancel button if it's there
+
+            if(document.querySelector('.postbox__btn--cancel')) {
+
+                document.querySelector('.postbox__btn--cancel').remove();
+
+            }
+
+            // Clear ID from hidden field
+
+            this.clearIdInput();
+
+            // Clear text
+
+            this.clearFields();
 
         }
 

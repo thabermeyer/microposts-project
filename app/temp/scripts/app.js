@@ -9046,11 +9046,15 @@ document.querySelector('.postbox__btn').addEventListener('click', submitPost);
 
 // Listen for delete
 
-// document.querySelector('#posts').addEventListener('click', deletePost);
+document.querySelector('#posts').addEventListener('click', deletePost);
 
 // Listen for edit state
 
 document.querySelector('#posts').addEventListener('click', enableEdit);
+
+// Listen for cancel
+
+document.querySelector('.postbox__form').addEventListener('click', cancelEdit);
 
 // Get Posts
 
@@ -9069,21 +9073,68 @@ function submitPost() {
 
     var title = document.querySelector('#title').value;
     var body = document.querySelector('#body').value;
+    var id = document.querySelector('#id').value;
 
     var data = {
 
         title: title,
         body: body
 
-        // Create Post
+    };
 
-    };_HTTP.http.post('http://localhost:3000/posts', data).then(function (data) {
-        _UI.ui.showAlert('Post added', 'alert');
-        _UI.ui.clearFields();
-        getPosts();
-    }).catch(function (err) {
-        return console.log(err);
-    });
+    if (title === '' || body === '') {
+
+        _UI.ui.showAlert('Please fill in all fields', 'alert alert--danger');
+    } else {
+
+        // Check for ID
+
+        if (id === '') {
+
+            // Create Post
+
+            _HTTP.http.post('http://localhost:3000/posts', data).then(function (data) {
+                _UI.ui.showAlert('Post added', 'alert alert--success');
+                _UI.ui.clearFields();
+                getPosts();
+            }).catch(function (err) {
+                return console.log(err);
+            });
+        } else {
+
+            // Update Post
+
+            _HTTP.http.put('http://localhost:3000/posts/' + id, data).then(function (data) {
+                _UI.ui.showAlert('Post updated', 'alert alert--success');
+                _UI.ui.changeFormState('add');
+                getPosts();
+            }).catch(function (err) {
+                return console.log(err);
+            });
+        }
+    }
+}
+
+function deletePost(e) {
+
+    if (e.target.parentElement.classList.contains('delete')) {
+
+        var id = e.target.parentElement.dataset.id;
+
+        // Delete Post
+
+        if (confirm('Are you sure?')) {
+
+            _HTTP.http.delete('http://localhost:3000/posts/' + id).then(function (data) {
+                _UI.ui.showAlert('Post deleted', 'alert alert--success');
+                getPosts();
+            }).catch(function (err) {
+                return console.log(err);
+            });
+        }
+    }
+
+    e.preventDefault();
 }
 
 // Enable Edit State
@@ -9105,6 +9156,18 @@ function enableEdit(e) {
             // Fill form with current post
 
         };_UI.ui.fillForm(data);
+    }
+
+    e.preventDefault();
+}
+
+// Cancel edit state
+
+function cancelEdit(e) {
+
+    if (e.target.classList.contains('postbox__btn--cancel')) {
+
+        _UI.ui.changeFormState('add');
     }
 
     e.preventDefault();
@@ -9427,6 +9490,15 @@ var UI = function () {
                         this.changeFormState('edit');
                 }
 
+                // Clear ID hidden value
+
+        }, {
+                key: 'clearIdInput',
+                value: function clearIdInput() {
+
+                        this.idInput.value = '';
+                }
+
                 // Change the form state
 
         }, {
@@ -9455,7 +9527,26 @@ var UI = function () {
                                 // Insert cancel button
 
                                 cardForm.insertBefore(button, formEnd);
-                        } else {}
+                        } else {
+
+                                this.postSubmit.textContent = 'Post It';
+                                this.postSubmit.className = 'postbox__btn postbox__btn--primary';
+
+                                // Remove cancel button if it's there
+
+                                if (document.querySelector('.postbox__btn--cancel')) {
+
+                                        document.querySelector('.postbox__btn--cancel').remove();
+                                }
+
+                                // Clear ID from hidden field
+
+                                this.clearIdInput();
+
+                                // Clear text
+
+                                this.clearFields();
+                        }
                 }
         }]);
 
