@@ -21,9 +21,7 @@ gulp.task('deleteDistFolder', function() {
 
 gulp.task('copyGeneralFiles', ['deleteDistFolder'], function() {
   var pathsToCopy = [
-    './app/**/*',
-    './app/temp/styles/fonts',
-    './app/temp/styles/fonts/**',
+    './app/**/*',git
     '!./app/index.html',
     '!./app/assets/images/**',
     '!./app/assets/styles/**',
