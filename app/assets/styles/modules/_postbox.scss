@@ -25,12 +25,6 @@
 
     }
 
-    &__post-content {
-
-
-
-    }
-
     &__link {
 
         font-size: 2rem;
@@ -77,32 +71,45 @@
         color: #fff;
         padding: 1.5rem;
         border: none;
+        transition: all .2s;
 
         &--primary {
 
             background-color: $color-primary;
 
+            &:hover {
+
+                background-color: $color-primary-dark;
+
+            }
+
         }
 
         &--edit {
 
-            background-color: #FF8800;
+            background-color: $color-warning;
+
+            &:hover {
+
+                background-color: $color-warning-dark;
+
+            }
 
         }
 
         &--cancel {
 
-            background-color: #eeeeee;
+            background-color: $color-gray-light;
             color: #000;
             margin-top: 2rem;
 
+            &:hover {
+
+                background-color: $color-gray;
+
+            }
+
         }
-
-    }
-
-    &__form-end {
-
-
 
     }
 

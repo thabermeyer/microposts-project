@@ -49,7 +49,7 @@ function submitPost() {
 
     if(title === '' || body === '') {
 
-        ui.showAlert('Please fill in all fields', 'alert alert--danger');
+        ui.showAlert('Please fill in all fields before submitting', 'alert alert--danger');
 
     } else {
 

@@ -9084,7 +9084,7 @@ function submitPost() {
 
     if (title === '' || body === '') {
 
-        _UI.ui.showAlert('Please fill in all fields', 'alert alert--danger');
+        _UI.ui.showAlert('Please fill in all fields before submitting', 'alert alert--danger');
     } else {
 
         // Check for ID
@@ -9189,16 +9189,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * EasyHTTP Library
- * Library for making HTTP requests
- *
- * @version 3.0.0
- * @author  Brad Traversy
- * @license MIT
- *
- **/
 
 var EasyHTTP = function () {
   function EasyHTTP() {
@@ -9458,6 +9448,9 @@ var UI = function () {
                                 _this.clearAlert();
                         }, 3000);
                 }
+
+                // Remove current alert if on the page
+
         }, {
                 key: 'clearAlert',
                 value: function clearAlert() {
@@ -9469,6 +9462,9 @@ var UI = function () {
                                 currentAlert.remove();
                         }
                 }
+
+                // Clear out title/body fields for next submission
+
         }, {
                 key: 'clearFields',
                 value: function clearFields() {

@@ -2377,10 +2377,9 @@ body {
   padding: 3rem;
   margin-bottom: 3rem; }
 
-.navbar__link:link, .navbar__link:visited {
+.navbar__text {
   font-size: 2.5rem;
-  color: #fff;
-  text-decoration: none; }
+  color: #fff; }
 
 .postbox {
   margin: auto;
@@ -2419,15 +2418,24 @@ body {
     font-size: 2rem;
     color: #fff;
     padding: 1.5rem;
-    border: none; }
+    border: none;
+    -webkit-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s; }
     .postbox__btn--primary {
       background-color: #3498db; }
+      .postbox__btn--primary:hover {
+        background-color: #1d6fa5; }
     .postbox__btn--edit {
       background-color: #FF8800; }
+      .postbox__btn--edit:hover {
+        background-color: #b35f00; }
     .postbox__btn--cancel {
-      background-color: #eeeeee;
+      background-color: #ecf0f1;
       color: #000;
       margin-top: 2rem; }
+      .postbox__btn--cancel:hover {
+        background-color: #7f8c8d; }
 
 .footer {
   width: 100vw;
@@ -2445,8 +2453,8 @@ body {
   .alert--success {
     background-color: #c8e6c9;
     color: #007E33;
-    border: solid #f1f8e9 .2rem; }
+    border: solid #f1f8e9 0.2rem; }
   .alert--danger {
     background-color: #ef9a9a;
     color: #CC0000;
-    border: solid #ffebee .2rem; }
+    border: solid #ffebee 0.2rem; }

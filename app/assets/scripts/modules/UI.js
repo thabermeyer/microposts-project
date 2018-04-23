@@ -4,7 +4,7 @@ class UI {
 
         this.post = document.querySelector('#posts');
         this.titleInput = document.querySelector('#title');
-        this.bodyInput = document. querySelector('#body');
+        this.bodyInput = document.querySelector('#body');
         this.idInput = document.querySelector('#id');
         this.postSubmit = document.querySelector('.postbox__btn');
         this.forState = 'add';
@@ -80,6 +80,8 @@ class UI {
 
     }
 
+    // Remove current alert if on the page
+
     clearAlert() {
 
         const currentAlert = document.querySelector('.alert');
@@ -91,6 +93,8 @@ class UI {
         }
 
     }
+
+    // Clear out title/body fields for next submission
 
     clearFields() {
 

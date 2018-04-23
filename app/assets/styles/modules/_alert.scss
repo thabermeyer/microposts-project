@@ -9,17 +9,17 @@
 
     &--success {
 
-        background-color: #c8e6c9;
-        color: #007E33;
-        border: solid #f1f8e9 .2rem;
+        background-color: $color-success-light;
+        color: $color-success;
+        border: solid $color-success-light-2 .2rem;
 
     }
 
     &--danger {
 
-        background-color: #ef9a9a;
-        color: #CC0000;
-        border: solid #ffebee .2rem;
+        background-color: $color-danger-light;
+        color: $color-danger;
+        border: solid $color-danger-light-2 .2rem;
 
     }
 
